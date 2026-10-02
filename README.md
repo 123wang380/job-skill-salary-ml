@@ -3,6 +3,10 @@
 [![CI](https://github.com/123wang380/job-skill-salary-ml/actions/workflows/ci.yml/badge.svg)](https://github.com/123wang380/job-skill-salary-ml/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
+在线演示：https://123wang380.github.io/job-skill-salary-ml/
+
+[![在线演示](docs/preview.png)](https://123wang380.github.io/job-skill-salary-ml/)
+
 这是一个面向机器学习求职展示的端到端基线项目：输入招聘岗位描述，输出可能要求的技术技能与月薪预测。
 
 项目已经实现可运行的 TF-IDF + 多标签分类、回归基线、FastAPI 推理接口、Streamlit 交互页面、Docker 和 GitHub Actions。BERT 微调、MLflow 和真实数据实验属于下一阶段路线，不会在当前版本中伪装成已完成。
@@ -41,7 +45,8 @@
 ├── tests/
 ├── Dockerfile
 ├── docker-compose.yml
-└── .github/workflows/ci.yml
+├── docs/
+└── .github/workflows/
 ```
 
 ## 本地运行
@@ -59,6 +64,12 @@ python -m job_ml.pipeline --data data/raw/sample_jobs.csv
 
 ```powershell
 python -m job_ml.pipeline --data data/raw/sample_jobs.csv --no-lightgbm
+```
+
+导出 GitHub Pages 使用的浏览器模型：
+
+```powershell
+python -m job_ml.export_web --data data/raw/sample_jobs.csv --output docs/model.json
 ```
 
 启动 API：
