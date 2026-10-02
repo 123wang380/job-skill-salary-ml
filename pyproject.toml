@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "job-skill-salary-ml"
+version = "0.1.0"
+description = "Baseline ML system for job skill extraction and salary prediction."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "龚旺旺" }]
+dependencies = [
+    "fastapi>=0.110",
+    "joblib>=1.3",
+    "numpy>=1.24",
+    "pandas>=2.0",
+    "pydantic>=2.6",
+    "scikit-learn>=1.3",
+    "streamlit>=1.32",
+    "uvicorn[standard]>=0.29",
+]
+
+[project.optional-dependencies]
+ml = [
+    "lightgbm>=4.0",
+    "shap>=0.45",
+]
+dev = [
+    "httpx>=0.27",
+    "pytest>=8.0",
+    "ruff>=0.6",
+]
+
+[project.scripts]
+job-ml-train = "job_ml.pipeline:main"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]
